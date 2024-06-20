@@ -77,7 +77,8 @@
 
 <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/092617d1-a35b-4c96-bf7f-22c6d42832fd" width="500" height="500"/>
 
-
+<br>
+<br>
 
 ### 1-2. SQL 공유 및 재사용
 
@@ -85,7 +86,12 @@
 
 - [SGA 구성요소]
 
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/fb7e2de7-f0ab-4ccb-ae21-55dae03d9752" width="500" height="500"/>
+
 - [소프트 파싱, 하드 파싱 원리]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/52765269-9858-45d2-8b92-5a48c0021ed9" width="500" height="500"/>
 
 - 소프트 파싱 : SQL을 캐시에서 찾아서 곧바로 실행단계로 가는 것
 - 하드 파싱 : 캐시에서 SQL 문을 못 찾음, 최적화 및 로우 소스 생성 단계까지 가는 것 
@@ -97,7 +103,8 @@
 
 - [서로 다른 SQL]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/8c93a6f8-2a5e-4d48-b045-c6bca4c9f9a2" width="500" height="500"/>
 
 - [바인드 변수 활용]
 
-- 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/dcb1bf33-74af-4eeb-b4db-bca9fed9a5bc" width="500" height="500"/>
