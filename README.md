@@ -74,6 +74,7 @@
 - [자주 사용하는 힌트 목록]
 
 <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/116f4d10-d6dc-4a59-9523-508d3754ca8b" width="500" height="500"/>
+
 <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/092617d1-a35b-4c96-bf7f-22c6d42832fd" width="500" height="500"/>
 
 
