@@ -118,6 +118,10 @@
 
 - [SQL이 느린 이유]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a186a5a5-4866-40bd-a5a5-a45c7e92c283" width="500" height="500"/>
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b02a5ca7-ab7e-4dda-adea-c8bbdda7a550" width="500" height="500"/>
+
 
 - 튜닝이란? 어떻게 하면 디스크 I/O를 최소화할수 있을까에 대한 이야기
 - 왜냐하면, I/O call이 많을 수록 그 만큼 대기가 많아짐
@@ -126,7 +130,13 @@
 
 - [논리적 구조]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b354bb75-27e7-4b66-a95f-4bea1026814c" width="500" height="500"/>
+
+
 - [물리적 구조]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d1781899-35a7-486c-8f51-6d5c1fb6f06c" width="500" height="500"/>
+
 
 - 블럭 : 최소 I/O 단위, 익스텐트 : 연속된 블록 집합(확장 단위), 세그먼트 : 데이터 저장 공간이 필요한 오브젝트, 테이블스페이스 : 세그먼트를 담는 콘테이너, 데이터 파일 : 디스크 상의 물리적인 OS 파일
 - DBMS가 데이터를 읽고 쓰는 단위는 블록
@@ -136,7 +146,7 @@
 
 - [시퀀셜 액세스, 랜덤 액세스]
 
-
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
 
 - 시퀀셜(순차) 액세스 : O(n) 순차탐색, 대량 액세스일 때 유리, 순서대로 블록을 읽음
 - 랜덤(이진) 액세스 : O(logn) 이진탐색, 소량(10~15%)일 때 유리, 한 블록씩 읽음
@@ -145,7 +155,12 @@
 
 - [SGA]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
+
+
 - [논리적 I/O와 물리적 I/O]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1bd88e3c-50cb-46e7-a887-7df0aaa233e7" width="500" height="500"/>
 
 
 - 논리적 블록 I/O : SQL 처리 과정에서 발생한 총 블록 I/O로써, 메모리 I/O를 의미함
