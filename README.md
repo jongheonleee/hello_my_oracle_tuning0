@@ -180,7 +180,11 @@
 > ### 👉 인데스 튜닝의 핵심 -> range(탐색 범위)를 작게 만들기 
 - [range가 작은 경우]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/125e7311-eb26-444a-aa02-ef2fd4c66196" width="500" height="500"/>
+
 - [range가 큰 경우]
+  
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9f2f3d61-3619-43a2-acf4-e2bbf410bd5f" width="500" height="500"/>
 
 - 인덱스 튜닝의 핵심 "인덱스 스캔 효율화. 즉, 스캔 범위를 작게 만들기"
   - 컬럼 순서 : 위의 사진에서 스캔 범위가 차이나는 이유는 컬럼 순서 때문
@@ -191,12 +195,16 @@
 
 - [인덱스 스캔과 랜덤 액세스]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9eb4acd8-fecf-4a68-93d5-f40b73fed7e2" width="500" height="500"/>
+
 - 테이블 액세스 횟수 줄이기, 즉 "랜덤 액세스 최소화 튜닝"
 
 
 > ### 👉 인덱스의 구조 -> B * tree
 
 - [B * tree]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/181936e4-ba2e-435f-9e48-bd9d59170dd6" width="500" height="500"/>
 
 - 인덱스 : 대용량 테이블에서 소량의 데이터만 빠르게 효율적으로 액세스하기 위해 사용하는 트리
   - 정렬/위치 
@@ -209,6 +217,7 @@
 > ### 👉 인덱스 탐색 방법 -> (1) 수직 탐색, (2) 수평 탐색
 - [인덱스 탐색]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb30243a-9599-413f-9c7d-e3c7d2f1434f" width="500" height="500"/>
 
 - 인덱스 탐색 과정
   - (1) 수직 탐색 : 인덱스 스캔 시작지점을 찾는 과정, root -> x
@@ -220,6 +229,7 @@
 > ### 👉 결합 인덱스 구조와 탐색 -> 칼럼이 n개인 인덱스
 - [결합 인덱스]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/464ddfc2-35ca-401b-84a4-d13eb40b6f02" width="500" height="500"/>
 
 - 두 개 이상의 컬럼을 결합된 인덱스를 지칭
 - 주의할 점, where에 2개 이상의 조건을 명시하면 인덱스 탐색과 동시에 조건 전부 확인함
@@ -227,6 +237,7 @@
 > ### 👉 'Balanced'의 의미 : 트리의 높이 차이가 1이하인 트리 
 - [Balanced 아닌 트리]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a73dd7ed-568d-4296-bb62-e17b2cde361e" width="500" height="500"/>
 
 ### 2-2. 인덱스 기본 사용법 
 
@@ -242,6 +253,8 @@
 
 - 결론 
   - [인덱스를 쓰지 못하는 경우]
+    
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5eb28462-af4f-40d2-8f70-7cdeba0bf572" width="500" height="500"/>
 
 > ### 👉 인덱스를 이용한 소트 연산 생략 -> 인덱스의 특징인 '정렬'을 활용
 - 인데스의 특징은 정렬과 위치 정보가 있다는 것
@@ -250,11 +263,18 @@
 
 - [인덱스로 소트]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/6c9f84f0-f023-45fd-81fc-21b6a1b28a7a" width="500" height="500"/>
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/870f6f64-8622-44aa-8e2d-eae51b239119" width="500" height="500"/>
 
 > ### 👉 SELECT-LIST에서 칼럼 변형 -> 인덱스를 특징을 살려서 성능을 높임 
 - [인덱스의 특징]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/aa7ab6ba-b0f1-4c66-b7e4-057ea6792500" width="500" height="500"/>
+
 - [min(), max()]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df86d1d1-df04-4e54-81e6-4b3520bfa170" width="500" height="500"/>
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d53dc4c0-c354-4c13-becb-52e340667d46" width="500" height="500"/>
 
 - 인덱스 특징에 의해 min(), max() 성능이 좋음
 - 함수의 순서에 따라 index 활용 여부가 달라짐 
@@ -271,18 +291,35 @@
 > ### 👉 인덱스 스캔 방법 총 6가지 -> (1) range scan, (2) full scan, (3) unique scan, (4) skip scan, (5) fast full scan, (6) rage scan descending
 - (1) range scan : root -> leaf & left -> right
   - [range scan]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7919b17f-1aa9-408c-ba24-a6bbeb677b61" width="500" height="500"/>
+  
   
 - (2) full scan : left -> right
   - [full scan]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/87b6ae48-8821-4a1c-9120-5e4aa1f754c3" width="500" height="500"/>
   
 - (3) unique scan : root -> leaf(=target)
   - [unique scan]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/39ddc746-7415-4286-8bfb-4f7f4cd64592" width="500" height="500"/>
   
 - (4) skip scan : range scan + skip
   - [skip scan]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d9e69c80-a0de-42bc-80b1-2b9019a9cfd3" width="500" height="500"/>
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3a947a19-f25f-425e-b313-9ba6497bc443" width="500" height="500"/>
   
 - (5) fast full scan : full 
   - [fast full scan]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/65b916db-3e83-4c99-90dc-fa9e418c49f8" width="500" height="500"/>
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cf683320-0534-4229-a928-3b7a0551d3c6" width="500" height="500"/>
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb7e8df7-52bd-4645-b895-7cd9597feb9d" width="500" height="500"/>
+
   
 - (6) rage scan descending : root -> leaf & right -> left 
   - [rage scan descending]
+
+  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cba3ff26-cee7-4d73-b96a-b9aa779de8cd" width="500" height="500"/>
