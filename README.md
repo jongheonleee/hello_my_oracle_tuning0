@@ -418,7 +418,7 @@
 > ### 👉 부분범위 처리 = 필요할 때만 조금씩 일정량만 나눠서 분배 
 - [부분범위 처리 비유]
 
-<img src="" width="500" height="500"/>
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/2c6b6e48-1863-4517-993a-771c9c247d4d" width="500" height="500"/>
 
 
 - 위의 사진을 보면, 운반공은 미장공이 벽돌을 더 가져오라는 요청(fetch-call)이 있을 때만 벽돌을 실어 나름, 추가 요청 없으면 운반 작업 멈춤 
@@ -433,26 +433,29 @@
 ### 3-3. 인덱스 스캔 효율화 
 
 > ### 👉 컬럼의 순서와 where 절 작성을 통해 인덱스 스캔 효율화 도모 
-- [조건절]
-
-<img src="" width="500" height="500"/>
 
 - [인덱스 탐색 과정]
 
-<img src="" width="500" height="500"/>
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a172b6f6-9e6f-4387-b1d7-94640006152d" width="500" height="500"/>
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0967a56f-193a-41ff-be13-29fde525dc41" width="500" height="500"/>
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b33baa3a-6b85-4f0b-b687-de33a4c09705" width="500" height="500"/>
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1e29ea76-ead9-4ad4-84c1-467fb1db23ac" width="500" height="500"/>
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/ca724b67-d468-48f0-b588-61a1d5a93c98" width="500" height="500"/>
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c35c0df9-8a00-4c9f-ac83-58e106d91415" width="500" height="500"/>
 
 <br>
 
 > ### 👉 연속된 컬럼으로 조회해야 range 범위가 짧음 
 
-- [연속적인 경우]
+- [연속적인/비연속적인 경우]
 
-<img src="" width="500" height="500"/>
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5c559ee2-514d-417b-814f-c1f53d357ea5" width="500" height="500"/>
 
-- [비연속적인 경우]
-
-<img src="" width="500" height="500"/>
 
 <br>
 <br>
