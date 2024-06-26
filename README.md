@@ -332,11 +332,18 @@
 ### 3-1. 테이블 액세스 최소화
 
 > ### 👉 튜닝 대상 2가지 - range, table access 최소화 
-[그림 1]
+- [그림 1]
 
-[그림 2]
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/36a84009-8e7c-4024-b45e-e0efe72851cc" width="500" height="500"/>
 
-[그림 3]
+- [그림 2]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d469ca4e-10f5-493b-b6c6-9317d48f6224" width="500" height="500"/>
+
+- [그림 3]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/89ec5e14-cfc6-4016-8dec-10f6b9a73fcb" width="500" height="500"/>
+
 - 인덱스를 이용하는 이유, 빠르게 ROWID를 얻기 위함 
   - ROWID : 데이터파일 번호 + 오브젝트 번호 + 블록 번호
   - ROWID는 논리적 주소 
@@ -344,19 +351,22 @@
 
 > ### 👉 데이터의 군집도를 나타내는 '인덱스 클러스터링 팩터'
 
-[클러스터링 팩터가 좋은 경우]  
+- [클러스터링 팩터가 좋은 경우]  
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0aa5a42a-f664-4261-a5a3-f95c7a3033a6" width="500" height="500"/>
 
-[클러스터링 팩터가 안좋은 경우]
+- [클러스터링 팩터가 안좋은 경우]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/f077492b-bef9-4326-a30d-a0d77f19d8f6" width="500" height="500"/>
 
 - 인덱스 클러스터링 팩터 : 특정 칼럼 기준으로 같은 값을 갖는 데이터의 군집도
 - 클러스터링 팩터가 좋은 경우, IO 횟수가 줄어듬 - 여러번 읽지 않고 적은 횟수로 많이 읽음 
 
 > ### 👉 인덱스는 소량의 데이터를 조회할 때 사용(10~15%)
 
-[인덱스 손익 분기점]
+- [인덱스 손익 분기점]
 
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e3c07299-7053-43d2-b3e9-37910e8b870b" width="500" height="500"/>
 
 - table full scan : 시퀀셜 엑세스, 순차 탐색 -> Multiblock I/O
 - index scan : 인덱스의 rowid를 이용한 테이블 액세스  -> Single Block I/O
@@ -364,9 +374,13 @@
 
 > ### 👉 인덱스 컬럼 추가를 통해 테이블 엑세스를 최소화한다 
 
-[테이블 엑세스 많은 경우]
+- [테이블 엑세스 많은 경우]
 
-[테이블 엑세스 적은 경우]
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/56283ec3-2a5d-4b1d-9c21-870e80f6118f" width="500" height="500"/>
+
+- [테이블 엑세스 적은 경우]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b0bd5c8d-4223-4076-b1f7-b10aa879757a" width="500" height="500"/>
 
 - 테이블 엑세스가 일어나는 이유, 인덱스에 칼럼이 부족하기 때문
   - 따라서 인덱스에 컬럼을 추가하여 테이블 엑세스 최소화할 수 있음
@@ -374,7 +388,9 @@
 
 > ### 👉 인덱스 구조 테이블 = 인덱스 + 테이블 
 
-[인덱스 구조 테이블]
+- [인덱스 구조 테이블]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c9ee8a6d-3bf1-414b-a6bd-0523005213d0" width="500" height="500"/>
 
 - 인덱스 구조 테이블 = IOT 라고함(오라클)
 - 인덱스 리프 블록에 데이터 블록을 모두 저장하는 방식 
@@ -382,9 +398,13 @@
 
 > ### 👉 클러스터 테이블 = 테이블을 특정 기준으로 쪼갬
 
-[인덱스 클러스터 테이블]
+- [인덱스 클러스터 테이블]
 
-[해시 클러스터 테이블]
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/14e6cd76-e9a5-4ab9-b016-a5b50e0344a9" width="500" height="500"/>
+
+- [해시 클러스터 테이블]
+
+<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0ce129f4-9672-49a5-a774-c1b8a0cbbed0" width="500" height="500"/>
 
 - 클러스터 테이블에는 크게 2가지 종류가 있음
   - 인덱스 클러스터 테이블 : 클러스터 키 값이 같은 레코드를 한 블록에 모아 놓은 구조
