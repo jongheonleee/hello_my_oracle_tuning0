@@ -9,8 +9,12 @@
 > ### 📌 06. DML 튜닝 
 > ### 📌 07. SQL 옵티마이저 
 
+<br>
+<br>
 
 ## 📌 01. SQL 처리 과정과 I/O : SQL 기초 내부 동작 및 튜닝 시작
+
+<br>
 
 ### 1-1. SQL 파싱과 최적화 
 
@@ -18,8 +22,7 @@
 > ###    SQL is a set-based, declarative query language, not an imperative language such as C.
 
 - [SQL 작동 원리]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0c1ead91-1ad8-4dbc-8386-130c437a066f" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0c1ead91-1ad8-4dbc-8386-130c437a066f" width="500" height="500"/>
 
 - 핵심은 "Structured Query Language". 즉, 구조적 질의 언어
 - 더욱 자세히 말하면, 구조적, 집합적, 선언적 질의 언어
@@ -42,18 +45,14 @@
 > ### 👉 SQL 옵티마이저, 최적의 데이터 액세스 경로를 선택해주는 DBMS 엔진
 
 - [SQL 옵티마이저 최적 경로 선택]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/490aa2ab-d942-4e34-8053-b07ad8c499c8" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/490aa2ab-d942-4e34-8053-b07ad8c499c8" width="500" height="500"/>
 - 네비게이터와 같은 원리 
 
 
 > ### 👉 튜닝의 시작은 실행 계획을 이해하는 것으로부터 시작
 
 - [실행 계획]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5e555c56-1e82-43db-9f16-100b4345d90e" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5e555c56-1e82-43db-9f16-100b4345d90e" width="500" height="500"/>
 - 실행 계획을 읽고 스스로 수동 개입할 것인지를 판단해야함
 - TABLE ACCESS : 테이블 접근, NESTED LOOPS : 중첩 for문, INDEX : 인덱스 활용, COST : 비용
 - 트리 구조로 이루어져 있음
@@ -64,20 +63,15 @@
   - (2). 오래 걸리는 것(비용이 큰 것)
 
 - [힌트(수동 명령)]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/daf3897f-e127-411b-8848-c2d126e4ef3d" width="500" height="500"/>
-
-
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/daf3897f-e127-411b-8848-c2d126e4ef3d" width="500" height="500"/>
 - 주석을 활용함. 실행 계획에만 영향을 줌(자바의 애너테이션과 유사함)
 
-- [자주 사용하는 힌트 목록]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/116f4d10-d6dc-4a59-9523-508d3754ca8b" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/092617d1-a35b-4c96-bf7f-22c6d42832fd" width="500" height="500"/>
-
 <br>
+
+- [자주 사용하는 힌트 목록]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/116f4d10-d6dc-4a59-9523-508d3754ca8b" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/092617d1-a35b-4c96-bf7f-22c6d42832fd" width="500" height="500"/>
+
 <br>
 
 ### 1-2. SQL 공유 및 재사용
@@ -85,16 +79,16 @@
 > ### 👉 Soft Parsing(소프트 파싱), Hard Parsing(하드 파싱)과 바인드 변수 활용
 
 - [SGA 구성요소]
-
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/fb7e2de7-f0ab-4ccb-ae21-55dae03d9752" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/fb7e2de7-f0ab-4ccb-ae21-55dae03d9752" width="500" height="500"/>
 
 - [소프트 파싱, 하드 파싱 원리]
 
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/52765269-9858-45d2-8b92-5a48c0021ed9" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/52765269-9858-45d2-8b92-5a48c0021ed9" width="500" height="500"/>
 
 - 소프트 파싱 : SQL을 캐시에서 찾아서 곧바로 실행단계로 가는 것
 - 하드 파싱 : 캐시에서 SQL 문을 못 찾음, 최적화 및 로우 소스 생성 단계까지 가는 것 
+
+<br>
 
 > ### 👉 SQL은 모두 문자열, 따라서 ?(바인드 변수)를 활용해서 캐시 활용도를 높여야함 
 
@@ -102,14 +96,11 @@
 - 따라서, 작은 부분이라도 달라도 서로 다른 SQL 문임
 
 - [서로 다른 SQL]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/8c93a6f8-2a5e-4d48-b045-c6bca4c9f9a2" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/8c93a6f8-2a5e-4d48-b045-c6bca4c9f9a2" width="500" height="500"/>
 
 - [바인드 변수 활용]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/dcb1bf33-74af-4eeb-b4db-bca9fed9a5bc" width="500" height="500"/>
 
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/dcb1bf33-74af-4eeb-b4db-bca9fed9a5bc" width="500" height="500"/>
-
-<br>
 <br>
 
 ### 1-3. 데이터 저장 구조 및 I/O 메커니즘
@@ -117,52 +108,43 @@
 > ### 👉 튜닝이란? 디스크 I/O를 최소화하는 것
 
 - [SQL이 느린 이유]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a186a5a5-4866-40bd-a5a5-a45c7e92c283" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b02a5ca7-ab7e-4dda-adea-c8bbdda7a550" width="500" height="500"/>
-
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a186a5a5-4866-40bd-a5a5-a45c7e92c283" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b02a5ca7-ab7e-4dda-adea-c8bbdda7a550" width="500" height="500"/>
 - 튜닝이란? 어떻게 하면 디스크 I/O를 최소화할수 있을까에 대한 이야기
 - 왜냐하면, I/O call이 많을 수록 그 만큼 대기가 많아짐
+
+<br>
 
 > ### 👉 데이터베이스 저장 구조 : 테이블스페이스(데이터 저장소) -> 세그먼트(종류별 저장) -> 익스텐드(파일) -> 블럭(I/O 최소 단위) -> 로우
 
 - [논리적 구조]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b354bb75-27e7-4b66-a95f-4bea1026814c" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b354bb75-27e7-4b66-a95f-4bea1026814c" width="500" height="500"/>
 
 - [물리적 구조]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d1781899-35a7-486c-8f51-6d5c1fb6f06c" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d1781899-35a7-486c-8f51-6d5c1fb6f06c" width="500" height="500"/>
 
 
 - 블럭 : 최소 I/O 단위, 익스텐트 : 연속된 블록 집합(확장 단위), 세그먼트 : 데이터 저장 공간이 필요한 오브젝트, 테이블스페이스 : 세그먼트를 담는 콘테이너, 데이터 파일 : 디스크 상의 물리적인 OS 파일
 - DBMS가 데이터를 읽고 쓰는 단위는 블록
 - 오라클은 기본적으로 8KB 크기의 블록 사용, 즉 한번에 I/O 할때마다 8KB 사용
 
+<br>
+
 > ### 👉 시퀀셜(순차) 액세스와 랜덤(이진) 액세스
 
 - [시퀀셜 액세스, 랜덤 액세스]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
 - 시퀀셜(순차) 액세스 : O(n) 순차탐색, 대량 액세스일 때 유리, 순서대로 블록을 읽음
 - 랜덤(이진) 액세스 : O(logn) 이진탐색, 소량(10~15%)일 때 유리, 한 블록씩 읽음
+
+<br>
 
 > ### 👉 논리적 I/O와 물리적 I/O, 메모리에서 읽는 것과 디스크에서 읽는 것
 
 - [SGA]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
-
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/07da32de-a2f7-4054-b265-ac3f906ed861" width="500" height="500"/>
 - [논리적 I/O와 물리적 I/O]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1bd88e3c-50cb-46e7-a887-7df0aaa233e7" width="500" height="500"/>
-
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1bd88e3c-50cb-46e7-a887-7df0aaa233e7" width="500" height="500"/>
 - 논리적 블록 I/O : SQL 처리 과정에서 발생한 총 블록 I/O로써, 메모리 I/O를 의미함
 - 물리적 블록 I/O : 디스크에서 발생한 총 블록 I/O를 말함 
 
@@ -170,6 +152,8 @@
 <br>
 
 ## 📌 02. 인덱스 기본 : 인덱스의 구조 및 활용법 
+
+<br>
 
 ### 2-1. 인덱스 구조 및 탐색 
 
@@ -179,12 +163,10 @@
 
 > ### 👉 인데스 튜닝의 핵심 -> range(탐색 범위)를 작게 만들기 
 - [range가 작은 경우]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/125e7311-eb26-444a-aa02-ef2fd4c66196" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/125e7311-eb26-444a-aa02-ef2fd4c66196" width="500" height="500"/>
 
 - [range가 큰 경우]
-  
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9f2f3d61-3619-43a2-acf4-e2bbf410bd5f" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9f2f3d61-3619-43a2-acf4-e2bbf410bd5f" width="500" height="500"/>
 
 - 인덱스 튜닝의 핵심 "인덱스 스캔 효율화. 즉, 스캔 범위를 작게 만들기"
   - 컬럼 순서 : 위의 사진에서 스캔 범위가 차이나는 이유는 컬럼 순서 때문
@@ -194,17 +176,15 @@
 
 
 - [인덱스 스캔과 랜덤 액세스]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9eb4acd8-fecf-4a68-93d5-f40b73fed7e2" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9eb4acd8-fecf-4a68-93d5-f40b73fed7e2" width="500" height="500"/>
 - 테이블 액세스 횟수 줄이기, 즉 "랜덤 액세스 최소화 튜닝"
 
+<br>
 
 > ### 👉 인덱스의 구조 -> B * tree
 
 - [B * tree]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/181936e4-ba2e-435f-9e48-bd9d59170dd6" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/181936e4-ba2e-435f-9e48-bd9d59170dd6" width="500" height="500"/>
 
 - 인덱스 : 대용량 테이블에서 소량의 데이터만 빠르게 효율적으로 액세스하기 위해 사용하는 트리
   - 정렬/위치 
@@ -214,10 +194,11 @@
   - 블록 번호 : 데이터파일 내에서 부여한 상대적 순번
   - 로우 번호 : 블록 내 순번
 
+<br>
+
 > ### 👉 인덱스 탐색 방법 -> (1) 수직 탐색, (2) 수평 탐색
 - [인덱스 탐색]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb30243a-9599-413f-9c7d-e3c7d2f1434f" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb30243a-9599-413f-9c7d-e3c7d2f1434f" width="500" height="500"/>
 
 - 인덱스 탐색 과정
   - (1) 수직 탐색 : 인덱스 스캔 시작지점을 찾는 과정, root -> x
@@ -226,20 +207,26 @@
   - (2) 수평 탐색 : 데이터를 찾는 과정, left -> right
     - '찾고자 하는 데이터가 더 안 나타날 때까지 인덱스 리프 블록을 스캔'
 
+<br>
+
 > ### 👉 결합 인덱스 구조와 탐색 -> 칼럼이 n개인 인덱스
 - [결합 인덱스]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/464ddfc2-35ca-401b-84a4-d13eb40b6f02" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/464ddfc2-35ca-401b-84a4-d13eb40b6f02" width="500" height="500"/>
 
 - 두 개 이상의 컬럼을 결합된 인덱스를 지칭
 - 주의할 점, where에 2개 이상의 조건을 명시하면 인덱스 탐색과 동시에 조건 전부 확인함
 
+<br>
+
 > ### 👉 'Balanced'의 의미 : 트리의 높이 차이가 1이하인 트리 
 - [Balanced 아닌 트리]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a73dd7ed-568d-4296-bb62-e17b2cde361e" width="500" height="500"/>
 
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a73dd7ed-568d-4296-bb62-e17b2cde361e" width="500" height="500"/>
+<br>
 
 ### 2-2. 인덱스 기본 사용법 
+
+<br>
 
 > ### 👉 Range Scan 안되는 경우 -> (1) 변형, (2) like, (3) or, in
 - "인덱스를 사용한다" -> "리프에서 스캔 시작점을 찾아서 거기부터 스캔하다 중간에 멈추는 것"
@@ -255,8 +242,9 @@
 
 - 결론 
   - [인덱스를 쓰지 못하는 경우]
-    
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5eb28462-af4f-40d2-8f70-7cdeba0bf572" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5eb28462-af4f-40d2-8f70-7cdeba0bf572" width="500" height="500"/>
+
+<br>
 
 > ### 👉 인덱스를 이용한 소트 연산 생략 -> 인덱스의 특징인 '정렬'을 활용
 - 인데스의 특징은 정렬과 위치 정보가 있다는 것
@@ -264,67 +252,64 @@
 - 위와 마찬가지로, order by 절에서 칼럼이 변형되면 인덱스 활용 못함 
 
 - [인덱스로 소트]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/6c9f84f0-f023-45fd-81fc-21b6a1b28a7a" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/870f6f64-8622-44aa-8e2d-eae51b239119" width="500" height="500"/>
 
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/6c9f84f0-f023-45fd-81fc-21b6a1b28a7a" width="500" height="500"/>
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/870f6f64-8622-44aa-8e2d-eae51b239119" width="500" height="500"/>
+<br>
 
 > ### 👉 SELECT-LIST에서 칼럼 변형 -> 인덱스를 특징을 살려서 성능을 높임 
 - [인덱스의 특징]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/aa7ab6ba-b0f1-4c66-b7e4-057ea6792500" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/aa7ab6ba-b0f1-4c66-b7e4-057ea6792500" width="500" height="500"/>
 
 - [min(), max()]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df86d1d1-df04-4e54-81e6-4b3520bfa170" width="500" height="500"/>
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d53dc4c0-c354-4c13-becb-52e340667d46" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df86d1d1-df04-4e54-81e6-4b3520bfa170" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d53dc4c0-c354-4c13-becb-52e340667d46" width="500" height="500"/>
 
 - 인덱스 특징에 의해 min(), max() 성능이 좋음
 - 함수의 순서에 따라 index 활용 여부가 달라짐 
 
+<br>
 
 > ### 👉 자동형변환에 의지하지 말라
 
 - 자동형변환은 쿼리 문의 가독성을 떨어트림, 의도를 파악하기 어려움 
 - 또한, 개발자가 형변환 함수를 생략해도 옵티마이저가 자동으로 생성
 
+<br>
 
 ### 2-3. 인덱스 확장기능 사용법 
+
+<br>
 
 > ### 👉 인덱스 스캔 방법 총 6가지 -> (1) range scan, (2) full scan, (3) unique scan, (4) skip scan, (5) fast full scan, (6) rage scan descending
 - (1) range scan : root -> leaf & left -> right
   - [range scan]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7919b17f-1aa9-408c-ba24-a6bbeb677b61" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7919b17f-1aa9-408c-ba24-a6bbeb677b61" width="500" height="500"/>
   
   
 - (2) full scan : left -> right
   - [full scan]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/87b6ae48-8821-4a1c-9120-5e4aa1f754c3" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/87b6ae48-8821-4a1c-9120-5e4aa1f754c3" width="500" height="500"/>
   
 - (3) unique scan : root -> leaf(=target)
   - [unique scan]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/39ddc746-7415-4286-8bfb-4f7f4cd64592" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/39ddc746-7415-4286-8bfb-4f7f4cd64592" width="500" height="500"/>
   
 - (4) skip scan : range scan + skip
   - [skip scan]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d9e69c80-a0de-42bc-80b1-2b9019a9cfd3" width="500" height="500"/>
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3a947a19-f25f-425e-b313-9ba6497bc443" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d9e69c80-a0de-42bc-80b1-2b9019a9cfd3" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3a947a19-f25f-425e-b313-9ba6497bc443" width="500" height="500"/>
   
 - (5) fast full scan : full 
   - [fast full scan]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/65b916db-3e83-4c99-90dc-fa9e418c49f8" width="500" height="500"/>
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cf683320-0534-4229-a928-3b7a0551d3c6" width="500" height="500"/>
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb7e8df7-52bd-4645-b895-7cd9597feb9d" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/65b916db-3e83-4c99-90dc-fa9e418c49f8" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cf683320-0534-4229-a928-3b7a0551d3c6" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cb7e8df7-52bd-4645-b895-7cd9597feb9d" width="500" height="500"/>
 
   
 - (6) rage scan descending : root -> leaf & right -> left 
   - [rage scan descending]
-
-  <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cba3ff26-cee7-4d73-b96a-b9aa779de8cd" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cba3ff26-cee7-4d73-b96a-b9aa779de8cd" width="500" height="500"/>
 
 <br>
 <br>
@@ -333,80 +318,76 @@
 
 ### 3-1. 테이블 액세스 최소화
 
+<br>
+
 > ### 👉 튜닝 대상 2가지 - range, table access 최소화 
 - [그림 1]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/36a84009-8e7c-4024-b45e-e0efe72851cc" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/36a84009-8e7c-4024-b45e-e0efe72851cc" width="500" height="500"/>
 - [그림 2]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d469ca4e-10f5-493b-b6c6-9317d48f6224" width="500" height="500"/>
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d469ca4e-10f5-493b-b6c6-9317d48f6224" width="500" height="500"/>
 - [그림 3]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/89ec5e14-cfc6-4016-8dec-10f6b9a73fcb" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/89ec5e14-cfc6-4016-8dec-10f6b9a73fcb" width="500" height="500"/>
 
 - 인덱스를 이용하는 이유, 빠르게 ROWID를 얻기 위함 
   - ROWID : 데이터파일 번호 + 오브젝트 번호 + 블록 번호
   - ROWID는 논리적 주소 
 
+<br>
 
 > ### 👉 데이터의 군집도를 나타내는 '인덱스 클러스터링 팩터'
 
 - [클러스터링 팩터가 좋은 경우]  
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0aa5a42a-f664-4261-a5a3-f95c7a3033a6" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0aa5a42a-f664-4261-a5a3-f95c7a3033a6" width="500" height="500"/>
 
 - [클러스터링 팩터가 안좋은 경우]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/f077492b-bef9-4326-a30d-a0d77f19d8f6" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/f077492b-bef9-4326-a30d-a0d77f19d8f6" width="500" height="500"/>
 
 - 인덱스 클러스터링 팩터 : 특정 칼럼 기준으로 같은 값을 갖는 데이터의 군집도
 - 클러스터링 팩터가 좋은 경우, IO 횟수가 줄어듬 - 여러번 읽지 않고 적은 횟수로 많이 읽음 
 
+<br>
+
 > ### 👉 인덱스는 소량의 데이터를 조회할 때 사용(10~15%)
 
 - [인덱스 손익 분기점]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e3c07299-7053-43d2-b3e9-37910e8b870b" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e3c07299-7053-43d2-b3e9-37910e8b870b" width="500" height="500"/>
 
 - table full scan : 시퀀셜 엑세스, 순차 탐색 -> Multiblock I/O
 - index scan : 인덱스의 rowid를 이용한 테이블 액세스  -> Single Block I/O
 
+<br>
 
 > ### 👉 인덱스 컬럼 추가를 통해 테이블 엑세스를 최소화한다 
 
 - [테이블 엑세스 많은 경우]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/56283ec3-2a5d-4b1d-9c21-870e80f6118f" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/56283ec3-2a5d-4b1d-9c21-870e80f6118f" width="500" height="500"/>
 
 - [테이블 엑세스 적은 경우]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b0bd5c8d-4223-4076-b1f7-b10aa879757a" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b0bd5c8d-4223-4076-b1f7-b10aa879757a" width="500" height="500"/>
 
 - 테이블 엑세스가 일어나는 이유, 인덱스에 칼럼이 부족하기 때문
   - 따라서 인덱스에 컬럼을 추가하여 테이블 엑세스 최소화할 수 있음
 
+<br>
 
 > ### 👉 인덱스 구조 테이블 = 인덱스 + 테이블 
 
 - [인덱스 구조 테이블]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c9ee8a6d-3bf1-414b-a6bd-0523005213d0" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c9ee8a6d-3bf1-414b-a6bd-0523005213d0" width="500" height="500"/>
 
 - 인덱스 구조 테이블 = IOT 라고함(오라클)
 - 인덱스 리프 블록에 데이터 블록을 모두 저장하는 방식 
 - 위와 같은 구조는 유지 비용이 많이 듬
 
+<br>
+
 > ### 👉 클러스터 테이블 = 테이블을 특정 기준으로 쪼갬
 
 - [인덱스 클러스터 테이블]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/14e6cd76-e9a5-4ab9-b016-a5b50e0344a9" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/14e6cd76-e9a5-4ab9-b016-a5b50e0344a9" width="500" height="500"/>
 
 - [해시 클러스터 테이블]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0ce129f4-9672-49a5-a774-c1b8a0cbbed0" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0ce129f4-9672-49a5-a774-c1b8a0cbbed0" width="500" height="500"/>
 
 - 클러스터 테이블에는 크게 2가지 종류가 있음
   - 인덱스 클러스터 테이블 : 클러스터 키 값이 같은 레코드를 한 블록에 모아 놓은 구조
@@ -419,8 +400,7 @@
 
 > ### 👉 부분범위 처리 = 필요할 때만 조금씩 일정량만 나눠서 분배 
 - [부분범위 처리 비유]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/2c6b6e48-1863-4517-993a-771c9c247d4d" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/2c6b6e48-1863-4517-993a-771c9c247d4d" width="500" height="500"/>
 
 
 - 위의 사진을 보면, 운반공은 미장공이 벽돌을 더 가져오라는 요청(fetch-call)이 있을 때만 벽돌을 실어 나름, 추가 요청 없으면 운반 작업 멈춤 
@@ -437,26 +417,19 @@
 > ### 👉 컬럼의 순서와 where 절 작성을 통해 인덱스 스캔 효율화 도모 
 
 - [인덱스 탐색 과정]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a172b6f6-9e6f-4387-b1d7-94640006152d" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0967a56f-193a-41ff-be13-29fde525dc41" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b33baa3a-6b85-4f0b-b687-de33a4c09705" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1e29ea76-ead9-4ad4-84c1-467fb1db23ac" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/ca724b67-d468-48f0-b588-61a1d5a93c98" width="500" height="500"/>
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c35c0df9-8a00-4c9f-ac83-58e106d91415" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a172b6f6-9e6f-4387-b1d7-94640006152d" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0967a56f-193a-41ff-be13-29fde525dc41" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b33baa3a-6b85-4f0b-b687-de33a4c09705" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1e29ea76-ead9-4ad4-84c1-467fb1db23ac" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/ca724b67-d468-48f0-b588-61a1d5a93c98" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c35c0df9-8a00-4c9f-ac83-58e106d91415" width="500" height="500"/>
 
 <br>
 
 > ### 👉 연속된 컬럼으로 조회해야 range 범위가 짧음 
 
 - [연속적인/비연속적인 경우]
-
-<img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5c559ee2-514d-417b-814f-c1f53d357ea5" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5c559ee2-514d-417b-814f-c1f53d357ea5" width="500" height="500"/>
 
 
 <br>
