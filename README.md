@@ -469,21 +469,24 @@
 > ### 👉 Nested Loop 조인 -> O(n * logn), 앞에 작은 테이블 & 뒤에 큰 테이블이 유리함 
 
 - [PL/SQL 코드]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/142e32e3-abac-4940-98cb-e7ca5b408cc7" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/8254bd29-a0b4-4f42-868b-d54414dadaa4" width="500" height="500"/>
 - NL 조인은 Outer 와 Inner 양쪽 테이블 모두 인덱스를 이용. 물론 Outer 에서 Full Scan 하는 경우도 있음
 - NL 조인 제어 -> 'use_nl(테이블)' 힌트 활용 
 - NL 조인의 2 가지 특징 
   - (1) 랜덤 엑세스 위주의 조인 방식, 즉 인덱스 사용
-  - (2) 한 레코드씩 순차적으로 진행 
+  - (2) 한 레코드씩 순차적으로 진행
+    
 <br>
-- [내부 동작 그림 1] 
-- <img src="" width="500" height="500"/>
+
+- [내부 동작 그림 1]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/1bb542b6-40f1-42fc-80a8-660cc44ba06f" width="500" height="500"/>
 
 <br>
 
 - [내부 동작 그림 2] 
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7e93077c-4162-4360-88d8-8d4e93554968" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/64bc2eaf-9255-4b32-b5a3-2dbda3669e45" width="500" height="500"/>
 - 2 -> 3 -> 1 -> 4 순대로 진행 
 
 <br>
@@ -492,7 +495,7 @@
 
 > ### 👉 SGA 와 PGA
 - [SGA / PGA]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0721756c-3ca2-4baa-81d1-d3089a4403e4" width="500" height="500"/>
 - SGA : 공유 메모리 영역 
 - PGA : 각 오라클 서버 프로세스에 할당된 메모리 영역, 개별 메모리 영역 
 - PGA는 독립적인 메모리 공간, 래치 메커니즘이 불필요함. 따라서, 같은 양의 데이터를 읽더라고 SGA 버퍼캐시에서 읽을 때보다 빠름
@@ -504,7 +507,7 @@
 
 > ### 👉 소트 머지 조인 -> 양쪽 컬럼 정렬
 - [소트 머지 조인]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/f7e2761e-e9b5-472b-b72e-788087a8c356" width="500" height="500"/>
 - use_merge(테이블 이름) 힌트 활용
 - 소트 머지 조인의 특징 
   - (1) PGA 영역에 저장한 데이터를 이용, 해당 범위 내에서는 성능이 빠름
@@ -537,18 +540,19 @@
 
 > ### 👉 해시 조인의 기본 메커니즘 
 - [SQL 문]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/19cd871a-8739-45db-a977-689388bee9c5" width="500" height="500"/>
 
 <br>
 
 - [SQL 수행 과정]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cc24dae1-71c1-46cd-a85e-04a9bd2be415" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3ca794d3-96f0-4cd5-ad10-95e78d09db0e" width="500" height="500"/>
 
 - (1) Build 단계 - 작은 쪽 테이블을 읽어 해시 테이블(해시맵) 생성
 - (2) Probe 단계 - 큰 쪽 테이블을 읽어 해시 테이블을 탐색하면서 조인 
 
 > ### 🧑🏻‍🏫 조인 메서드 선택 기준
-> <img src="" width="500" height="500"/>
+> <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a1a170a2-4474-4f83-b95e-bb007f3a3395" width="500" height="500"/>
 
 <br>
 
@@ -556,7 +560,7 @@
 
 > ### 👉 오라클에서 서브쿼리 3 가지 분류 -> (1) 인라인 뷰, (2) 중첩된 서브쿼리, (3) 스칼라 서브쿼리
 - [서브쿼리 종류]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/6a9ed24b-04aa-4e1a-b891-a70bc3c663b8" width="500" height="500"/>
 - (1) 인라인 뷰 : FROM 절에 사용한 서브쿼리 
 - (2) 중첩된 서브쿼리 : 결과집합을 한정하기 위해 WHERE 절에 사용한 서브쿼리 
 - (3) 스칼라 서브쿼리 : 한 레코드당 정확히 하나의 값을 반환하는 서브쿼리 
@@ -565,7 +569,7 @@
 
 > ### 👉 서브쿼리 Unnesting = 중첩문을 쪼개서 따로따로 돌린다 
 - [서브쿼리 Unnesting]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/5b9cc8fc-972f-4464-877f-cb92ad86ea0a" width="500" height="500"/>
 - Unnesting이란 중첩을 부정한다는 의미
 - 서브쿼리 Unnesting은 메인과 서브쿼리 간의 계층 구조를 풀어 서로 같은 레벨(flat한 구조)로 만들어 준다를 의미함
   - 중첩문을 쪼개서 구분해서 돌림 
@@ -575,9 +579,9 @@
 
 > ### 👉 서브쿼리 Pushing = 서브쿼리 필터링을 먼저 처리 
 - [서브쿼리 Pushing]
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/84644636-2f5c-40b7-a934-732c6127819d" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/35379dda-db23-4c30-832d-adcce6e19f6d" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a4cfc100-f25a-4cae-8873-d206a280640e" width="500" height="500"/>
 - 위에서는 서브쿼리 필터링을 먼저 처리시켜서 조인 단계로 넘어가는 로우 수를 크게 줄임, 성능 향상  
 - 서브쿼리 Pushing은 서브쿼리 필터링을 가능한 한 앞 단계에서 처리하도록 강제하는 기능
   - push_subq / no_push_subq 힌트 사용
@@ -588,8 +592,8 @@
 
 > ### 👉 스칼라 서브쿼리 = 메인 쿼리 레코드마다 정확히 하나의 값만 반환, 처리 과정에서 캐싱 작용 활용하여 성능 향상 
 - [스칼라 서브쿼리]
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d261e8af-0763-4a6a-ba05-9d19b41e1100" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9f51a31d-9d1c-4359-a818-37488e981f7d" width="500" height="500"/>
 - 캐싱은 쿼리 단위로 이루어짐, 쿼리를 시작할 때 PGA 메모리에 공간을 할당하고 쿼리를 수행하면서 공간을 채워나감 
 
 <br>
