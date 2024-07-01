@@ -573,7 +573,7 @@
 
 <br>
 
-- 스칼라 서브 쿼리 캐싱 효과는 입력 값의 종류가 소수여서 해시 충동 가능성이 작을 땨 효과가 있음
+- 스칼라 서브 쿼리 캐싱 효과는 입력 값의 종류가 소수여서 해시 충동 가능성이 작을 때 효과가 있음
   - 캐시 공간은 늘 부족함 
 
 
@@ -590,7 +590,7 @@
 
 > ### 👉소트 처리되는 영역은 2가지 -> (1) Sort Area(PGA), (2) 디스크 
 - [디스크 소트 과정]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/20fca723-f67b-431c-b48f-ab181a5f976c" width="500" height="500"/>
 - 소트는 크게 2가지 영역에서 처리됨
   - (1) 메모리 소트(In-Memory Sort) : PGA에 할당한 Sort Area에서 이루어짐 
   - (2) 디스크 소트(To-Disk Sort) : Sort Area에서 정렬 완료 x -> 디스크 공간까지 사용 
@@ -609,7 +609,7 @@
 - SQL 에서 불필요한 소트가 발생하지 않도록 중의해야함 
   - (1)Union -> Union All
     - [Union All]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b1c6e9ee-e157-4658-8158-a20f49151e1a" width="500" height="500"/>
     - Union의 경우, 옵티마이저는 상단과 하단 두 집합 간 중복을 제거하려고 소트 작업을 수행
     - 이를 피하기 위해 조건절과 Union All을 적절히 사용해야함 
     
@@ -617,20 +617,20 @@
 
   - (2) Distinct -> Exist
     - [Exists]
-    - <img src="" width="500" height="500"/>  
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/4d2d9e4e-7df4-41af-9f8e-d9c0d0acc657" width="500" height="500"/>  
     - Distinct의 경우, 조건에 해당하는 데이터를 모두 읽어서 중복을 제거해야함. 모든 데이터를 읽는 과정에 많은 I/O가 발생
 
   <br>
 
   - (3) Minus -> Not Exist
     - [Exists]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/db28087f-2136-41cb-8a9a-9b9f89c7012e" width="500" height="500"/>
 
   <br>
 
   - (4) 인덱스 활용(조인 방식 변경)
     - [조인 방식 변경]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c77e6cc7-410f-4f6b-9ded-23b70a8b5b3b" width="500" height="500"/>
     - 테이블의 컬럼 중 인덱스가 걸려 있는 컬럼에 NL 조인 유도 -> 소트 연산 생략 가능 
 
 <br>
@@ -644,7 +644,7 @@
   - 인덱스 선두 컬럼을 [종목코드 + 거래일시] 순으로 구성하면 소트 연산 생략 가능 
 
 - [쿼리문]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/59a43e70-a687-48d8-ab99-0090240d1870" width="500" height="500"/>
 
 - 소트 연산을 생략할 수 없는 경우
 - 인덱스 선두 컬럼을 [종목코드 + 거래일시] 순으로 구성해야함 
@@ -652,7 +652,7 @@
 <br>
 
 - [실행계획]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/877b543b-ef47-4704-ac14-e221e0b8b976" width="500" height="500"/>
 
 <br>
 
@@ -662,12 +662,12 @@
 <br>
 
 - [쿼리문]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/33cb253b-c00d-40f5-90d5-622b3c18b709" width="500" height="500"/>
 
 <br>
 
 - [인덱스 활용]
-
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e24465c5-71be-4e71-bb76-2a5416cdda39" width="500" height="500"/>
 
 - 서브쿼리를 활용해야함 
 - 인라인 뷰로 정의한 집합을 모두 읽어 거래일시 순으로 정렬한 중간 집합을 우선 만들고, 거기서 상위 열 개 레코드를 취하는 형태
