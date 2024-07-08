@@ -718,18 +718,19 @@
 
 - 테이블은 Freelist를 통해 입력 블록을 할당 받음. 즉, 중간에 비어있는 공간에 Insert
   - [Freeliist]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e834ef98-b4ea-4600-84b7-b65579b74348" width="500" height="500"/>
 - 인덱스가 DML 성능에 영향을 미침, 수직 탐색 -> 입력할 블록 찾음 
   - [인덱스 INSERT]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7b0441c1-9453-4edc-a169-5c140221e336" width="500" height="500"/>
 
   <br>
 
   - [인덱스 UPDATE]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/15f96d5b-4a37-49da-99ce-44c0f29203b5" width="500" height="500"/>
   - 내부적으로 두개의 오퍼페이션 발생 -> '삽입', '삭제'
   
-  
+
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/bf748e46-4243-4d55-875f-2902546ebe60" width="500" height="500"/>
 
 <br>
 
@@ -747,7 +748,7 @@
 
 - Redo 로그의 용도는 크게 3가지
   - [Redo 로그]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/8e6384fa-c178-46fc-be19-9a68b820ee0f" width="500" height="500"/>
   - (1) DB Recovery
   - (2) Cache Recovery 
   - (3) Fast Commit
@@ -756,7 +757,7 @@
 
 - Undo 로그의 용도는 크게 3가지
   - [Undo 로그]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7f8534df-c1ec-4854-a508-5a9cf2734ec9" width="500" height="500"/>
   - (1) Transaction Rollback
   - (2) Transaction Recovery(TX 실패 -> Undo 처리)
   - (3) Read Consistency
@@ -769,7 +770,7 @@
     - (1) Current : 있는 그래도 읽음 -> 디스크에서 캐시로 적재된 원본 블록을 현재 상태 그대로 읽음
     - (2) Consistent : 일관되게 읽음 -> 쿼리가 시작된 이후에 다른 TX에 의해 변경된 블록을 만남, 원복 블록으로부터 복사본 블록 생성, 거기에 Undo 데이터 적용하여 쿼리가 '시작된 시점'으로 되돌려서 읽는 방법
     - [Isolation 그림]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/19c78bb6-ffdc-4492-bbf6-0ae4165c7cc9" width="500" height="500"/>
   
   
 <br>
@@ -797,13 +798,13 @@
 
 <br>
 
-- [트랜잭션 데이터 저장과정] 
-- <img src="" width="500" height="500"/>
+- [트랜잭션 데이터 저장과정]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/87001b89-d7db-42a5-84db-5eeb6eda7810" width="500" height="500"/>
 
 <br>
 
 - [DB Call]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/0dac7b9a-237d-409b-b3d7-3ddcadaea828" width="500" height="500"/>
 
 <br>
 
@@ -818,19 +819,19 @@
   - 변경분 데이터를 DW에 반영하는 과정
     - (1) 전일 발생한 변경 데이터를 가간계 시스템으로부터 추출
       - [참고 사진]
-      - <img src="" width="500" height="500"/>
+      - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3570c08c-09d2-4d96-a04e-bd8c5313aafa" width="500" height="500"/>
 
     - (2) CUSTOMER_DELTA(difference) 테이블을 DW 시스템으로 전송
       - [참고 사진]
-      - <img src="" width="500" height="500"/>
-      - <img src="" width="500" height="500"/>
+      - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/cf14289b-3ca8-4788-82ab-0855c7c4f9df" width="500" height="500"/>
+      - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/59966b75-a876-48a3-b5a0-f2844b249b67" width="500" height="500"/>
   
   
 <br>
 
 - Direct Path I/O
   - [Direct Path I/O]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df4ccd9a-caba-4543-8a58-089bc93d8e37" width="500" height="500"/>
   
 ## 📌 07. SQL 옵티마이저 : 
 
