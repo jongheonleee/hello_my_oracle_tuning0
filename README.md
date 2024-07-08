@@ -639,7 +639,7 @@
 
 <br>
 
-> ### 👉인덱스는 이진트리로 구성되어 있어서 정렬이 이미 되어 있음, Sort Order By 생략 가능 
+> ### 👉 인덱스는 이진트리로 구성되어 있어서 정렬이 이미 되어 있음, Sort Order By 생략 가능 
 - 인덱스 컬럼 위치가 중요
   - 인덱스 선두 컬럼을 [종목코드 + 거래일시] 순으로 구성하면 소트 연산 생략 가능 
 
@@ -829,10 +829,120 @@
   
 <br>
 
-- Direct Path I/O
-  - [Direct Path I/O]
-  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df4ccd9a-caba-4543-8a58-089bc93d8e37" width="500" height="500"/>
+### 06-2.  Direct Path I/O : append로 Insert 처리 
+
+> ### 👉 Direct Path I/O는 캐시를 안거치고 바로 읽어오는 것
+
+
+- [Direct Path I/O]
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/df4ccd9a-caba-4543-8a58-089bc93d8e37" width="500" height="500"/>
+
+<br>
+
+> ### 👉 일반적인 Insert 성능 떨어짐 -> Direct Path Insert(내부적으로 append로 Insert)
+
+- [Insert 과정]
+- <img src="" width="500" height="500"/>
+- 캐싱, 로깅 처리가 발생하여 성능이 저하됨. 이를 해결하기 위해 나온 것이 'Direct Path Insert' -> append 로 데이터 추가 
+
+<br>
+
+- [Direct Path Insert 과정]
+- <img src="" width="500" height="500"/>
+- <img src="" width="500" height="500"/>
+  - 1. Freelist 참조 x, HWM 뒤에 append로 붙임
+  - 2. 블록을 버퍼캐시에서 탐색 x
+  - 3. 버퍼캐시에 적재 x, 데이터 파일에 직접 기록
+  - 4. Undo 로깅 x
+  - 5. Redo 로깅 안 하게 할 수 있음
+
+<br>
+
+### 06-3.  파티션을 활용한 DML 튜닝 : 각 디스크 별로 테이블을 적절히 분리
+
+- [파티셔닝]
+- <img src="" width="500" height="500"/>
+- 파티셔닝 : 테이블/인덱스 데이터를 특정 컬럼 값에 따라 별도 세그먼트에 나눠서 저장하는 것 
+
+<br>
+
+- 테이블을 분할하는 방법은 크게 2가지
+  - [테이블 분할]
+  - <img src="" width="500" height="500"/>
+  - (1) 수평 분할 : 로우 분할
+  - (2) 수직 분할 : 칼럼 분할 
   
+<br>
+
+- 파티셔닝이 필요한 이유
+  - (1) 관리적 측면 : 파티션 단위 백업, 추가, 삭제 변경 -> 가용성 향상
+  - (2) 성능적 측면 : 파티션 단위 조회 및 DML, 경합 또는 부하 분산 
+
+<br>
+
+- [해시 파티션]
+- <img src="" width="500" height="500"/>
+
+<br>
+
+- [리스트 파티션]
+- <img src="" width="500" height="500"/>
+
+<br>
+
+- [인덱스 파티션]
+- <img src="" width="500" height="500"/>
+
+
+<br>
+
+### 06-4. Lock과 트랜잭션 동시성 제어
+
+<br>
+
+- 오라클에서 제공하는 여러 종류의 Lock -> 동시성 환경에서 데이터를 보호할 목적으로 사용 
+  - DML Lock : 로우 작업
+  - DDL Lock : 테이블 변경
+  - 래치(latch) : 가벼운 락
+  - 버퍼 Lock 
+  - 캐시 Lock/Pin
+  
+<br>
+
+- Lock은 크게 3가지로 구분
+  - (1) 공유락
+  - (2) 배타락 : R 공유 W 배타적  
+  - (3) 낙관적인 락 
+
+<br>
+
+- <img src="" width="500" height="500"/>
+- <img src="" width="500" height="500"/>
+- <img src="" width="500" height="500"/>
+- <img src="" width="500" height="500"/>
+
+<br>
+
+- 채번 방식에 따른 INSERT 성능 비교
+  - (1) 채번 테이블 : 테이블에 번호를 저장함(시퀀스와 유사), 사용자가 만들어서 쓰는 법
+    - [참고 그림]
+    - <img src="" width="500" height="500"/>
+  - (2) 시퀀스 오브젝트 : 오라클에서 제공하는 시스템, 안전함. 중간에 데이터 빠지는 경우 X
+    - [참고 그림]
+    - <img src="" width="500" height="500"/>
+  - (3) Max + 1 조회 : 성능이 가장 떨어지는 방식
+    - [참고 그림]
+    - <img src="" width="500" height="500"/>
+
+<br>
+
+- [채번 방식 정리]
+- <img src="" width="500" height="500"/>
+- <img src="" width="500" height="500"/>
+
+
+
+
 ## 📌 07. SQL 옵티마이저 : 
 
 <br>
