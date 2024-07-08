@@ -842,14 +842,14 @@
 > ### 👉 일반적인 Insert 성능 떨어짐 -> Direct Path Insert(내부적으로 append로 Insert)
 
 - [Insert 과정]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/bceca945-6381-424e-b9c9-822bb649b962" width="500" height="500"/>
 - 캐싱, 로깅 처리가 발생하여 성능이 저하됨. 이를 해결하기 위해 나온 것이 'Direct Path Insert' -> append 로 데이터 추가 
 
 <br>
 
 - [Direct Path Insert 과정]
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/bf847ac3-a188-4b64-8788-0483fcc93a42" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3c31de9e-df1a-4b2e-95f8-bb3e2dfdfb5d" width="500" height="500"/>
   - 1. Freelist 참조 x, HWM 뒤에 append로 붙임
   - 2. 블록을 버퍼캐시에서 탐색 x
   - 3. 버퍼캐시에 적재 x, 데이터 파일에 직접 기록
@@ -861,14 +861,14 @@
 ### 06-3.  파티션을 활용한 DML 튜닝 : 각 디스크 별로 테이블을 적절히 분리
 
 - [파티셔닝]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/c5650d96-05e3-4a17-95dc-41e2f3b93234" width="500" height="500"/>
 - 파티셔닝 : 테이블/인덱스 데이터를 특정 컬럼 값에 따라 별도 세그먼트에 나눠서 저장하는 것 
 
 <br>
 
 - 테이블을 분할하는 방법은 크게 2가지
   - [테이블 분할]
-  - <img src="" width="500" height="500"/>
+  - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/14a725c4-9a00-4021-ba9b-71adfbc9d076" width="500" height="500"/>
   - (1) 수평 분할 : 로우 분할
   - (2) 수직 분할 : 칼럼 분할 
   
@@ -881,17 +881,17 @@
 <br>
 
 - [해시 파티션]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/b615a029-e0b9-4ffe-82c1-1473e9431822" width="500" height="500"/>
 
 <br>
 
 - [리스트 파티션]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a3609cf6-0185-4a8f-bf12-87ec73831aab" width="500" height="500"/>
 
 <br>
 
 - [인덱스 파티션]
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/ae778c08-9f7e-4bd6-a9c5-5e60d95ad919" width="500" height="500"/>
 
 
 <br>
@@ -916,29 +916,36 @@
 
 <br>
 
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/bcf67a63-965a-4dd0-979e-c5196efc4798" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3316aad2-5e38-4a0a-a152-a59a31e3b114" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/ac8fd1ae-18c9-4d62-956a-e8f8412314a3" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/31b47d98-9515-4612-8e30-9b8e3c3d29c0" width="500" height="500"/>
 
 <br>
 
 - 채번 방식에 따른 INSERT 성능 비교
   - (1) 채번 테이블 : 테이블에 번호를 저장함(시퀀스와 유사), 사용자가 만들어서 쓰는 법
     - [참고 그림]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/e7444546-7bdd-45e0-ac48-e61b009c24e9" width="500" height="500"/>
+
+<br>
+
   - (2) 시퀀스 오브젝트 : 오라클에서 제공하는 시스템, 안전함. 중간에 데이터 빠지는 경우 X
     - [참고 그림]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/7ab90a92-2729-4171-b25c-f04bba91f9ad" width="500" height="500"/>
+
+<br>
+
   - (3) Max + 1 조회 : 성능이 가장 떨어지는 방식
     - [참고 그림]
-    - <img src="" width="500" height="500"/>
+    - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/3d7b7baf-a6c2-444d-9d54-1a31707f3ab4" width="500" height="500"/>
 
 <br>
 
 - [채번 방식 정리]
-- <img src="" width="500" height="500"/>
-- <img src="" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/a97f66ea-e943-414d-adca-9e39bebe7ecb" width="500" height="500"/>
+- <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/9ec7eaab-5cf3-4e87-acaa-abad5f5988f5" width="500" height="500"/>
 
 
 
