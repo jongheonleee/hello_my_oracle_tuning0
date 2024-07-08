@@ -699,11 +699,139 @@
 <br>
 <br>
 
-## 📌 06. DML 튜닝 : 
+## 📌 06. DML 튜닝 : INSERT/DELETE/UPDATE를 효율적으로 사용하는 방법
 
 <br>
+
+### 06-1. 기본 DML 튜닝
+
 <br>
 
+> ### 👉 DML 성능에 영향을 미치는 요인 -> 인덱스, 무결성 제약, 조건절, 서브쿼리, Redo 로깅, Undo 로깅, Lock, 커밋
+
+- DML은 데이터 조작어를 의미함 크게 3가지가 있음
+  - (1) INSERT
+  - (2) DELETE
+  - (3) UPDATE
+
+<br>
+
+- 테이블은 Freelist를 통해 입력 블록을 할당 받음. 즉, 중간에 비어있는 공간에 Insert
+  - [Freeliist]
+  - <img src="" width="500" height="500"/>
+- 인덱스가 DML 성능에 영향을 미침, 수직 탐색 -> 입력할 블록 찾음 
+  - [인덱스 INSERT]
+  - <img src="" width="500" height="500"/>
+
+  <br>
+
+  - [인덱스 UPDATE]
+  - <img src="" width="500" height="500"/>
+  - 내부적으로 두개의 오퍼페이션 발생 -> '삽입', '삭제'
+  
+  
+
+<br>
+
+- PK, FK 제약 < Check, Not Null 제약
+  - 제약은 내부적으로 if-else 문이 적용된다고 생각
+  - PK, FK 제약이 내부적으로 더 많은 부분을 확인하고 걸러줘야함 
+
+<br>
+
+- Redo 로깅과 DML 성능
+  - 데이터 파일과 컨트롤 파일에 가해지는 모든 변경사항을 Redo 로그에 기록
+    - DB에 바로 반영x, 수행x, 작업을 기록(명령을 기록함), 즉 내가한 작업을 기록함 
+
+<br>
+
+- Redo 로그의 용도는 크게 3가지
+  - [Redo 로그]
+  - <img src="" width="500" height="500"/>
+  - (1) DB Recovery
+  - (2) Cache Recovery 
+  - (3) Fast Commit
+
+<br>
+
+- Undo 로그의 용도는 크게 3가지
+  - [Undo 로그]
+  - <img src="" width="500" height="500"/>
+  - (1) Transaction Rollback
+  - (2) Transaction Recovery(TX 실패 -> Undo 처리)
+  - (3) Read Consistency
+
+<br>
+
+- MVCC : Multi-Version Concurrency Control
+  - 같은 목록 n개 복제해서 전달
+  - 오라클은 데이터를 크게 2가지 모드로 읽음
+    - (1) Current : 있는 그래도 읽음 -> 디스크에서 캐시로 적재된 원본 블록을 현재 상태 그대로 읽음
+    - (2) Consistent : 일관되게 읽음 -> 쿼리가 시작된 이후에 다른 TX에 의해 변경된 블록을 만남, 원복 블록으로부터 복사본 블록 생성, 거기에 Undo 데이터 적용하여 쿼리가 '시작된 시점'으로 되돌려서 읽는 방법
+    - [Isolation 그림]
+    - <img src="" width="500" height="500"/>
+  
+  
+<br>
+
+- Lock
+  - Lock은 DML 성능에 매우 크고 직접적인 영향을 미침
+  - Lock 레벨은 크게 4개로 구분
+    - (1) 로우 레벨 
+    - (2) 블록 레벨
+    - (3) 익스텐트 레벨
+    - (4) 테이블 레벨
+    
+ - 기본이 로우 레벨, 테이블 레벨
+ - 로우 레벨 락 걸리면, 테이블 레벨 락 걸림 -> DDL 수행하지 못하게 막으려고 
+
+<br>
+
+- DB 버퍼 캐시
+  - 변경된 블록을 모아 주기적으로 데이터 파일(디스크)에 일괄 기록하는 작업은 DBWR 프로세스가 담당
+    - 지연된 쓰기, 메모리는 바로 사용/ 디스크는 지연 쓰기
+  
+- Redo 로그 버퍼
+  - Redo 로그에 기록 -> Redo 로그로 복구 가능
+  - Redo 로그는 파일. 즉, 디스크 I/O 발생 -> 오라클은 로그 버퍼 사용 
+
+<br>
+
+- [트랜잭션 데이터 저장과정] 
+- <img src="" width="500" height="500"/>
+
+<br>
+
+- [DB Call]
+- <img src="" width="500" height="500"/>
+
+<br>
+
+- 인덱스 및 제약 해제를 통한 대량 DML 튜닝
+  - 대량 Insert -> '무결성 제약'과 '인덱스' 해제하여 빠르게 Insert
+    - 예를들어서, 100만건을 Insert한다고 했을 때, 매번 재약확인하는 것은 성능이 매우 떨어지는 작업
+    - 즉, '무결성 제약'과 '인덱스'를 잠시 해제해두었다가 빠르게 Insert 하기
+
+<br>
+
+- Merge 문
+  - 변경분 데이터를 DW에 반영하는 과정
+    - (1) 전일 발생한 변경 데이터를 가간계 시스템으로부터 추출
+      - [참고 사진]
+      - <img src="" width="500" height="500"/>
+
+    - (2) CUSTOMER_DELTA(difference) 테이블을 DW 시스템으로 전송
+      - [참고 사진]
+      - <img src="" width="500" height="500"/>
+      - <img src="" width="500" height="500"/>
+  
+  
+<br>
+
+- Direct Path I/O
+  - [Direct Path I/O]
+  - <img src="" width="500" height="500"/>
+  
 ## 📌 07. SQL 옵티마이저 : 
 
 <br>
