@@ -341,6 +341,7 @@
 - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/36a84009-8e7c-4024-b45e-e0efe72851cc" width="500" height="500"/>
 - [그림 2]
 - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/d469ca4e-10f5-493b-b6c6-9317d48f6224" width="500" height="500"/>
+- rowid = 오브젝트 번호 + 상대 파일 번호 + 블록 번호 + 데이터 번호
 - [그림 3]
 - <img src="https://github.com/jongheonleee/sql_tuning/assets/87258372/89ec5e14-cfc6-4016-8dec-10f6b9a73fcb" width="500" height="500"/>
 
